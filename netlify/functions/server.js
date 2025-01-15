@@ -1,19 +1,15 @@
 const express = require("express")
 const serverless = require("serverless-http")
-const path = require("path")
 
 const app = express()
 
-// Serve static files from public directory
-app.use(express.static("public"))
-
-// Routes
+// Basic routes that redirect to static files
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../public/home/home.html"))
+  res.redirect("/home/index.html")
 })
 
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../public/about/about.html"))
+  res.redirect("/about/index.html")
 })
 
 exports.handler = serverless(app)
